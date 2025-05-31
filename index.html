@@ -7,28 +7,20 @@
   <meta property="og:title" content="Quartz Office © 2025" />
   <meta property="og:image" content="https://qo-landing-page.vercel.app/logo-small.png" />
   <meta property="og:url" content="https://qo-landing-page.vercel.app" />
-  <meta property="og:type" content="https://qo-landing-page.vercel.app" />
+  <meta property="og:type” content="https://qo-landing-page.vercel.app" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Quartz Office © 2025" />
   <meta name="twitter:image" content="https://qo-landing-page.vercel.app/logo-small.png" />
-
   <style>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const images = [
-        'images/image1.png',
-        'images/image2.png',
-        'images/image3.png'
-        'images/image4.png'
-      ];
-      let current = 0;
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #162F29;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
 
-      document.getElementById('slideshow-body').addEventListener('click', () => {
-        current = (current + 1) % images.length;
-        document.getElementById('slideshow-body').style.backgroundImage = `url('${images[current]}')`;
-      });
-    });
-    </script>
     .svg-container {
       position: absolute;
       top: 50px;
