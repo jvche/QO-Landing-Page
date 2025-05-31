@@ -36,6 +36,22 @@
     }
   </style>
 </head>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const images = [
+        'images/image1.png',
+        'images/image2.png',
+        'images/image3.png'
+        'images/image4.png'
+      ];
+      let current = 0;
+
+      document.getElementById('slideshow-body').addEventListener('click', () => {
+        current = (current + 1) % images.length;
+        document.getElementById('slideshow-body').style.backgroundImage = `url('${images[current]}')`;
+      });
+    });
+  </script>
 <body>
   <div class="svg-container">
     <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 467.44 231.97">
