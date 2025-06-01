@@ -7,7 +7,7 @@
   <meta property="og:title" content="Quartz Office © 2025" />
   <meta property="og:image" content="https://quartzoffice.co/logo-small.png" />
   <meta property="og:url" content="https://quartzoffice.co" />
-  <meta property="og:type" content="https://quartzoffice.co" />
+  <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Quartz Office © 2025" />
   <meta name="twitter:image" content="https://quartzoffice.co/logo-small.png" />
@@ -109,21 +109,23 @@
       'images/image9.png',
       'images/image10.png',
     ];
-    let current = 0;
-    let showingBg1 = true;
+    let index = 0;
     const bg1 = document.getElementById('bg1');
     const bg2 = document.getElementById('bg2');
-    bg1.style.backgroundImage = `url('${images[current]}');
-    document.getElementById('slideshow-body').addEventListener('click', () => {
-      current = (current + 1) % images.length;
-      const nextImage = images[current];
-      const topLayer = showingBg1 ? bg2 : bg1;
-      const bottomLayer = showingBg1 ? bg1 : bg2;
-      topLayer.style.backgroundImage = `url('${nextImage}')`;
-      topLayer.style.opacity = 1;
-      bottomLayer.style.opacity = 0;
-      showingBg1 = !showingBg1;
-    });
+
+    function changeBackground() {
+      const nextIndex = (index + 1) % images.length;
+      const current = index % 2 === 0 ? bg1 : bg2;
+      const next = index % 2 === 0 ? bg2 : bg1;
+
+      next.style.backgroundImage = `url('${images[nextIndex]}')`;
+      next.style.opacity = 1;
+      current.style.opacity = 0;
+
+      index = nextIndex;
+    }
+
+    setInterval(changeBackground, 5000);
   </script>
 </body>
 </html>
