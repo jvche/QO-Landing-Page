@@ -32,8 +32,21 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
     }
+    .overlay {
+      position: fixed;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(26, 26, 26, 0.6);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
     .svg-container {
+      position: relative;
+      z-index: 1;
       max-width: 1000px;
       width: 100%;
       display: flex;
@@ -49,28 +62,8 @@
   </style>
 </head>
 <body id="slideshow-body">
-
-  <script>
-    const images = [
-      'images/image1.png',
-      'images/image2.png',
-      'images/image3.png',
-      'images/image4.png',
-      'images/image5.png',
-      'images/image6.png',
-      'images/image7.png',
-      'images/image8.png',
-      'images/image9.png',
-      'images/image10.png',
-    ];
-    let current = 0;
-
-    document.getElementById('slideshow-body').addEventListener('click', () => {
-      current = (current + 1) % images.length;
-      document.getElementById('slideshow-body').style.backgroundImage = `url('${images[current]}')`;
-    });
-  </script>
-   <div class="svg-container">
+  <div class="overlay"></div>
+  <div class="svg-container">
     <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 899.9 450.8">
       <defs>
         <style>
@@ -95,5 +88,24 @@
       </g>
     </svg>
   </div>
+  <script>
+    const images = [
+      'images/image1.png',
+      'images/image2.png',
+      'images/image3.png',
+      'images/image4.png',
+      'images/image5.png',
+      'images/image6.png',
+      'images/image7.png',
+      'images/image8.png',
+      'images/image9.png',
+      'images/image10.png',
+    ];
+    let current = 0;
+    document.getElementById('slideshow-body').addEventListener('click', () => {
+      current = (current + 1) % images.length;
+      document.getElementById('slideshow-body').style.backgroundImage = `url('${images[current]}')`;
+    });
+  </script>
 </body>
 </html>
