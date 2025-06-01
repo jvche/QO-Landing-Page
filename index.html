@@ -12,19 +12,24 @@
   <meta name="twitter:title" content="Quartz Office © 2025" />
   <meta name="twitter:image" content="https://quartzoffice.co/logo-small.png" />
   <style>
-    html, body {
-      margin: 0; padding: 0;
-      width: 100%; height: 100%;
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
       overflow-x: hidden;
       overflow-y: auto;
-      background-color: #111;
+      cursor: pointer;
+    }
+    body {
+      background-image: url('images/image1.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      cursor: default;
+      transition: background-image 0.75s ease-in-out;
+      position: relative;
       display: flex;
       justify-content: center;
-      position: relative;
       align-items: center;
     }
     .svg-container {
@@ -33,8 +38,6 @@
       display: flex;
       padding: 2rem;
       box-sizing: border-box;
-      position: relative;
-      z-index: 10;
     }
     .svg-container svg {
       width: 100%;
@@ -42,38 +45,40 @@
       display: block;
       vertical-align: middle;
     }
-    #slider {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      z-index: 0;
-    }
-    .slider-bg {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      transition: opacity 1s ease-in-out;
-      opacity: 0;
-      will-change: opacity;
-    }
-    .slider-bg.visible {
-      opacity: 1;
-    }
   </style>
 </head>
 <body id="slideshow-body">
-  <div id="slider">
-    <div class="slider-bg" id="bg1"></div>
-    <div class="slider-bg" id="bg2"></div>
-  </div>
-  
-  <div class="svg-container">
+
+  <script>
+    const images = [
+      'images/image1.png',
+      'images/image2.png',
+      'images/image3.png',
+      'images/image4.png',
+      'images/image5.png',
+      'images/image6.png',
+      'images/image7.png',
+      'images/image8.png',
+      'images/image9.png',
+      'images/image10.png',
+    ];
+    
+    const preloadedImages = [];
+    
+    images.forEach(src => {
+      const img = new Image();
+      img.src = src;
+      preloadedImages.push(img);
+    });
+    
+    let current = 0;
+    
+    document.getElementById('slideshow-body').addEventListener('click', () => {
+      current = (current + 1) % images.length;
+      document.getElementById('slideshow-body').style.backgroundImage = `url('${images[current]}')`;
+    });
+  </script>
+   <div class="svg-container">
     <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 899.9 450.8">
       <defs>
         <style>
@@ -98,51 +103,5 @@
       </g>
     </svg>
   </div>
-  
-  <script>
-    const images = [
-      'images/image1.png',
-      'images/image2.png',
-      'images/image3.png',
-      'images/image4.png',
-      'images/image5.png',
-      'images/image6.png',
-      'images/image7.png',
-      'images/image8.png',
-      'images/image9.png',
-      'images/image10.png',
-    ];
-    
-    const preloadedImages = [];
-    images.forEach(src => {
-      const img = new Image();
-      img.src = src;
-      preloadedImages.push(img);
-    });
-
-    const bg1 = document.getElementById('bg1');
-    const bg2 = document.getElementById('bg2');
-    
-    let current = 0;
-    let showingBg1 = true;
-
-    bg1.style.backgroundImage = `url('${images[0]}')`;
-    bg1.classList.add('visible');
-    bg2.style.backgroundImage = '';
-    
-    document.getElementById('slideshow-body').addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % images.length;
-      if (showingBg1) {
-        bg2.style.backgroundImage = `url('${images[currentIndex]}')`;
-        bg2.classList.add('visible');
-        bg1.classList.remove('visible');
-      } else {
-        bg1.style.backgroundImage = `url('${images[currentIndex]}')`;
-        bg1.classList.add('visible');
-        bg2.classList.remove('visible');
-      }
-      showingBg1 = !showingBg1;
-    });
-  </script>
 </body>
 </html>
