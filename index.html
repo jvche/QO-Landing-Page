@@ -62,8 +62,17 @@
       'images/image9.png',
       'images/image10.png',
     ];
+    
+    const preloadedImages = [];
+    
+    images.forEach(src => {
+      const img = new Image();
+      img.src = src;
+      preloadedImages.push(img);
+    });
+    
     let current = 0;
-
+    
     document.getElementById('slideshow-body').addEventListener('click', () => {
       current = (current + 1) % images.length;
       document.getElementById('slideshow-body').style.backgroundImage = `url('${images[current]}')`;
